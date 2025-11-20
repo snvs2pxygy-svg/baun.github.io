@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="UTF-8">
+  <title>Baun.dk – Virksomhedsudvikling & Bestyrelsesarbejde</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Lars Baun – virksomhedsudvikling, bestyrelsesarbejde og rådgivning til SMV’er, arkitektvirksomheder og andre videnstunge virksomheder.">
+  <style>
+    :root {
+      --bg: #f5f5f7;
+      --bg-alt: #ffffff;
+      --primary: #004b6b;
+      --accent: #f0a500;
+      --text: #222222;
+      --muted: #666666;
+      --border: #e0e0e0;
+      --radius-lg: 18px;
+      --radius-xl: 26px;
+      --shadow-soft: 0 18px 35px rgba(0,0,0,0.07);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+                   sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    /* TOPNAV */
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(12px);
+      background: rgba(245,245,247,0.92);
+      border-bottom: 1px solid rgba(224,224,224,0.7);
+    }
+
+    .nav {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 10px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .nav-brand {
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      font-size: 0.9rem;
+      color: var(--primary);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 18px;
+      font-size: 0.9rem;
+    }
+
+    .nav-links a {
+      padding: 6px 10px;
+      border-radius: 999px;
+      transition: background 0.2s, color 0.2s;
+      color: var(--muted);
+    }
+
+    .nav-links a:hover {
+      background: #e6f2f8;
+      color: var(--primary);
+    }
+
+    .nav-cta {
+      padding: 8px 16px;
+      border-radius: 999px;
+      background: var(--primary);
+      color: #fff;
+      font-size: 0.9rem;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.2s;
+      box-shadow: 0 10px 22px rgba(0, 75, 107, 0.25);
+      white-space: nowrap;
+    }
+
+    .nav-cta:hover {
+      background: #01628c;
+      transform: translateY(-1px);
+      box-shadow: 0 16px 32px rgba(0, 75, 107, 0.28);
+    }
+
+    /* LAYOUT */
+
+    main {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 30px 20px 60px 20px;
+    }
+
+    section {
+      margin-bottom: 60px;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: #e6f2f8;
+      color: var(--primary);
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 600;
+    }
+
+    .tag-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+
+    h1, h2, h3 {
+      letter-spacing: -0.03em;
+    }
+
+    h1 {
+      font-size: clamp(2.1rem, 4vw, 2.8rem);
+      margin: 14px 0 12px;
+    }
+
+    h2 {
+      font-size: 1.6rem;
+      margin-bottom: 16px;
+    }
+
+    h3 {
+      font-size: 1.1rem;
+      margin-bottom: 6px;
+    }
+
+    p {
+      margin-bottom: 10px;
+    }
+
+    /* HERO */
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2.4fr);
+      gap: 32px;
+      align-items: center;
+    }
+
+    .hero-lead {
+      font-size: 1.05rem;
+      color: var(--muted);
+      max-width: 36rem;
+    }
+
+    .hero-actions {
+      margin-top: 18px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .btn-primary {
+      padding: 10px 22px;
+      border-radius: 999px;
+      background: var(--primary);
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      font-size: 0.95rem;
+      font-weight: 500;
+      box-shadow: 0 14px 30px rgba(0, 75, 107, 0.35);
+      transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.2s;
+    }
+
+    .btn-primary:hover {
+      background: #01628c;
+      transform: translateY(-1px);
+      box-shadow: 0 18px 38px rgba(0, 75, 107, 0.4);
+    }
+
+    .btn-ghost {
+      padding: 9px 18px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: transparent;
+      cursor: pointer;
+      font-size: 0.9rem;
+      color: var(--muted);
+      transition: background 0.2s, border-color 0.2s, color 0.2s;
+    }
+
+    .btn-ghost:hover {
+      background: #ffffff;
+      border-color: #d0d0d0;
+      color: var(--text);
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 20px;
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    .hero-meta span {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+
+    .hero-card {
+      background: var(--bg-alt);
+      border-radius: var(--radius-xl);
+      padding: 20px 20px 18px;
+      box-shadow: var(--shadow-soft);
+      border: 1px solid rgba(224,224,224,0.8);
+    }
+
+    .hero-card-header {
+      margin-bottom: 12px;
+    }
+
+    .hero-name {
+      font-weight: 700;
+      font-size: 1.1rem;
+    }
+
+    .hero-role {
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .hero-pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+
+    .pill {
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid #e0e0e0;
+      font-size: 0.75rem;
+      color: var(--muted);
+      background: #fafafa;
+    }
+
+    .hero-contact {
+      font-size: 0.85rem;
+      color: var(--muted);
+      border-top: 1px dashed #e3e3e3;
+      padding-top: 10px;
+      margin-top: 6px;
+    }
+
+    .hero-contact p {
+      margin-bottom: 4px;
+    }
+
+    .hero-contact a {
+      color: var(--primary);
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+    }
+
+    /* SECTIONS */
+
+    .section-header {
+      margin-bottom: 16px;
+    }
+
+    .columns-2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 26px;
+    }
+
+    .card {
+      background: var(--bg-alt);
+      border-radius: var(--radius-lg);
+      padding: 18px 18px 16px;
+      border: 1px solid #e6e6e6;
+      box-shadow: 0 10px 22px rgba(0,0,0,0.04);
+    }
+
+    .card p:last-child {
+      margin-bottom: 0;
+    }
+
+    ul {
+      padding-left: 18px;
+      margin-bottom: 8px;
+    }
+
+    li {
+      margin-bottom: 5px;
+    }
+
+    .chip-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .chip {
+      font-size: 0.75rem;
+      padding: 4px 9px;
+      border-radius: 999px;
+      background: #f2f2f4;
+      color: var(--muted);
+    }
+
+    /* TIMELINE / EXPERIENCE */
+
+    .timeline {
+      border-left: 1px solid var(--border);
+      padding-left: 16px;
+      margin-top: 6px;
+    }
+
+    .timeline-item {
+      margin-bottom: 14px;
+      position: relative;
+    }
+
+    .timeline-item::before {
+      content: "";
+      position: absolute;
+      left: -19px;
+      top: 5px;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--primary);
+      box-shadow: 0 0 0 3px #e6f2f8;
+    }
+
+    .timeline-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+
+    .timeline-meta {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    /* CONTACT */
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: minmax(0,2fr) minmax(0,3fr);
+      gap: 24px;
+    }
+
+    .contact-box {
+      background: var(--bg-alt);
+      border-radius: var(--radius-lg);
+      padding: 18px 18px 16px;
+      border: 1px solid #e6e6e6;
+      box-shadow: 0 10px 22px rgba(0,0,0,0.04);
+      font-size: 0.95rem;
+    }
+
+    .contact-box p {
+      margin-bottom: 6px;
+    }
+
+    .contact-label {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      margin-bottom: 2px;
+    }
+
+    .contact-form {
+      display: grid;
+      gap: 10px;
+      font-size: 0.9rem;
+    }
+
+    .field-group {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .field-group label {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .field-group input,
+    .field-group textarea {
+      padding: 8px 9px;
+      border-radius: 10px;
+      border: 1px solid #d5d5d5;
+      font: inherit;
+      resize: vertical;
+      min-height: 40px;
+    }
+
+    .field-group textarea {
+      min-height: 80px;
+    }
+
+    .field-group input:focus,
+    .field-group textarea:focus {
+      outline: 2px solid #c7e2f2;
+      border-color: #88c0e6;
+    }
+
+    .note-small {
+      font-size: 0.75rem;
+      color: var(--muted);
+      margin-top: -2px;
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 18px 20px 26px;
+      font-size: 0.8rem;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    /* RESPONSIVE */
+
+    @media (max-width: 880px) {
+      .hero {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .contact-grid,
+      .columns-2 {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .nav-links {
+        display: none;
+      }
+    }
+
+    @media (max-width: 600px) {
+      main {
+        padding: 20px 16px 40px 16px;
+      }
+      section {
+        margin-bottom: 46px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="nav">
+      <div class="nav-brand">BAUN.DK APS</div>
+      <nav class="nav-links">
+        <a href="#ydelser">Ydelser</a>
+        <a href="#erfaring">Erfaring</a>
+        <a href="#cases">Fokusområder</a>
+        <a href="#kontakt">Kontakt</a>
+      </nav>
+      <a href="#kontakt">
+        <button class="nav-cta">Book et uforpligtende møde</button>
+      </a>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section id="top" class="hero">
+      <div>
+        <span class="tag">
+          <span class="tag-dot"></span>
+          Virksomhedsudvikling & Bestyrelsesarbejde
+        </span>
+        <h1>
+          Rådgivning der gør små og mellemstore virksomheder stærkere – på den lange bane.
+        </h1>
+        <p class="hero-lead">
+          Jeg hjælper ledelser og ejerledere med at skabe overblik, sætte retning og
+          få tingene til at ske i praksis. Særligt inden for arkitekt- og rådgiverbranchen,
+          men også i andre videnstunge virksomheder.
+        </p>
+
+        <div class="hero-actions">
+          <a href="#kontakt">
+            <button class="btn-primary">Lad os tage en snak</button>
+          </a>
+          <a href="#ydelser">
+            <button class="btn-ghost">Se hvad jeg kan hjælpe med</button>
+          </a>
+        </div>
+
+        <div class="hero-meta">
+          <span><span class="dot"></span> Bestyrelsesarbejde & sparring</span>
+          <span><span class="dot"></span> Forretningsudvikling & salg</span>
+          <span><span class="dot"></span> Fokus på bæredygtig vækst</span>
+        </div>
+      </div>
+
+      <aside class="hero-card" aria-label="Kontaktkort">
+        <div class="hero-card-header">
+          <div class="hero-name">Lars Baun</div>
+          <div class="hero-role">Virksomhedsrådgiver & Bestyrelsesmedlem</div>
+        </div>
+
+        <div class="hero-pill-row">
+          <span class="pill">Strategi & eksekvering</span>
+          <span class="pill">Salgsoptimering</span>
+          <span class="pill">SMV’er & ejerledere</span>
+          <span class="pill">Arkitektbranchen</span>
+        </div>
+
+        <p style="font-size:0.9rem; margin-top:8px;">
+          Mere end 20 års erfaring med rådgivning, forretningsudvikling og bestyrelsesarbejde.
+        </p>
+
+        <div class="hero-contact">
+          <p><strong>Baun.dk ApS</strong></p>
+          <p>Skovgade 6 · 5500 Middelfart · Danmark</p>
+          <p>Telefon: <a href="tel:+4540202328">+45 40 20 23 28</a></p>
+          <p>E-mail: <a href="mailto:baunholm@gmail.com">baunholm@gmail.com</a></p>
+          <p class="note-small">CVR: 31349419 · Etableret 2008</p>
+        </div>
+      </aside>
+    </section>
+
+    <!-- YDELSER -->
+    <section id="ydelser">
+      <div class="section-header">
+        <h2>Ydelser</h2>
+        <p>
+          Jeg arbejder tæt på ejer og ledelse – med fokus på konkrete resultater,
+          også når hverdagen er travl.
+        </p>
+      </div>
+
+      <div class="columns-2">
+        <div class="card">
+          <h3>Bestyrelsesarbejde & strategisk sparring</h3>
+          <p>
+            Professionel sparringspartner til bestyrelse og direktion – med både
+            strategisk og praktisk erfaring.
+          </p>
+          <ul>
+            <li>Udvikling og forankring af strategi</li>
+            <li>Økonomisk overblik og nøgletal</li>
+            <li>Ejerstrategi og næste skridt for virksomheden</li>
+            <li>Styrket samspil mellem bestyrelse og daglig ledelse</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>Forretnings- & salgsudvikling</h3>
+          <p>
+            Hjælp til at skabe en mere effektiv og forudsigelig salgs- og
+            forretningsmotor – uden at miste fokus på fagligheden.
+          </p>
+          <ul>
+            <li>Struktur på pipeline og kundesegmenter</li>
+            <li>Udvikling af services og tilbud</li>
+            <li>Salgsprocesser og opfølgning i praksis</li>
+            <li>Træning af nøglemedarbejdere i salg og kundeoplevelse</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>Rådgivning til arkitekt- & rådgiverbranchen</h3>
+          <p>
+            Særligt kendskab til arkitektvirksomheder og andre projektorienterede
+            rådgivere – med fokus på kapacitet, projekter og likviditet.
+          </p>
+          <ul>
+            <li>Struktur på projekter, ressourcer og økonomi</li>
+            <li>Samarbejde med ingeniører, entreprenører og bygherrer</li>
+            <li>Forretningsmodeller, honorarer og tilbud</li>
+            <li>Understøttelse af ESG, bæredygtighed og dokumentation</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>Ad hoc-sparring til ejerledere</h3>
+          <p>
+            En fortrolig person at vende muligheder, udfordringer og beslutninger
+            med – uden stor overhead.
+          </p>
+          <ul>
+            <li>Kortere sparringsforløb med klar ramme</li>
+            <li>Akut sparring ved kriser eller vækstspring</li>
+            <li>Second opinion på investeringer og større beslutninger</li>
+          </ul>
+          <div class="chip-row">
+            <span class="chip">Fortrolighed</span>
+            <span class="chip">Pragmatisme</span>
+            <span class="chip">Handling</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ERFARING -->
+    <section id="erfaring">
+      <div class="section-header">
+        <h2>Erfaring i korte træk</h2>
+        <p>
+          Kombinationen af bestyrelsesarbejde, praktisk salgserfaring og tæt
+          samarbejde med SMV’er gør, at rådgivningen altid er forankret i virkeligheden.
+        </p>
+      </div>
+
+      <div class="columns-2">
+        <div>
+          <div class="card">
+            <h3>Udvalgte roller</h3>
+            <div class="timeline">
+              <div class="timeline-item">
+                <div class="timeline-title">Bestyrelsesmedlem</div>
+                <div class="timeline-meta">Flere danske SMV’er · Fokus på arkitektur, rådgivning og service</div>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-title">Virksomhedsrådgiver & sparringspartner</div>
+                <div class="timeline-meta">Forløb med ejerledere og ledelsesteams siden 00’erne</div>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-title">Forretningsudvikling & salg</div>
+                <div class="timeline-meta">Opbygning af salgsstrukturer, tilbudsprocesser og kundesamarbejder</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Sådan arbejder jeg</h3>
+          <ul>
+            <li><strong>Enkelt sprog:</strong> Vi taler om problemerne, som de er – uden konsulentfloskler.</li>
+            <li><strong>Data + erfaring:</strong> Nøgletal og økonomi kombineres med sunde forretningsprincipper.</li>
+            <li><strong>Praktisk fokus:</strong> Vi laver løsninger, der kan bruges i morgen – ikke kun på papir.</li>
+            <li><strong>Langsigtet samarbejde:</strong> Helst som partner over tid, ikke kun som engangskonsulent.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- CASES / FOKUS -->
+    <section id="cases">
+      <div class="section-header">
+        <h2>Typiske opgaver og fokusområder</h2>
+        <p>
+          Hver virksomhed er forskellig – men udfordringerne ligner ofte hinanden.
+          Her er nogle af de temaer, jeg oftest hjælper med.
+        </p>
+      </div>
+
+      <div class="columns-2">
+        <div class="card">
+          <h3>Når væksten presser likviditeten</h3>
+          <p>
+            Virksomheden vokser, men likviditeten halter, og banken stiller flere
+            krav. Vi arbejder med:
+          </p>
+          <ul>
+            <li>Overblik over ordrebeholdning og risiko</li>
+            <li>Kapacitetsstyring og prioritering</li>
+            <li>Dialog og rapportering til bank og investorer</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>Når salget er for tilfældigt</h3>
+          <p>
+            Der kommer ordrer ind, men uden struktur – og for meget beror på få
+            nøglepersoner. Vi fokuserer på:
+          </p>
+          <ul>
+            <li>Kundesegmenter og A/B/C-kunder</li>
+            <li>Pipeline, opfølgning og mødebookning</li>
+            <li>Enkle værktøjer, som medarbejderne faktisk bruger</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>Når organisationen skal løftes</h3>
+          <p>
+            Virksomheden er vokset, men strukturerne er ikke fulgt med. Vi arbejder
+            med:
+          </p>
+          <ul>
+            <li>Roller, ansvar og beslutningsgange</li>
+            <li>Mødestruktur og opfølgning</li>
+            <li>Ledelsessparring og træning</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>Når ESG og bæredygtighed banker på</h3>
+          <p>
+            Både kunder, banker og myndigheder efterspørger dokumentation og
+            grøn retning. Jeg hjælper med at:
+          </p>
+          <ul>
+            <li>Skabe overblik over krav og muligheder</li>
+            <li>Finde en realistisk vej for netop jeres virksomhed</li>
+            <li>Koble ESG til strategi og forretning – ikke kun rapporter</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- KONTAKT -->
+    <section id="kontakt">
+      <div class="section-header">
+        <h2>Kontakt</h2>
+        <p>
+          Hvis du står med en konkret udfordring eller blot vil vende mulighederne,
+          tager jeg gerne en uforpligtende samtale.
+        </p>
+      </div>
+
+      <div class="contact-grid">
+        <div class="contact-box">
+          <div class="contact-label">Virksomhed</div>
+          <p><strong>Baun.dk ApS</strong></p>
+          <p>Skovgade 6</p>
+          <p>5500 Middelfart</p>
+          <p>Danmark</p>
+
+          <div style="margin-top:12px;">
+            <div class="contact-label">Telefon</div>
+            <p><a href="tel:+4540202328">+45 40 20 23 28</a></p>
+          </div>
+
+          <div style="margin-top:8px;">
+            <div class="contact-label">E-mail</div>
+            <p><a href="mailto:baunholm@gmail.com">baunholm@gmail.com</a></p>
+          </div>
+
+          <div style="margin-top:8px;">
+            <div class="contact-label">CVR</div>
+            <p>31349419 · Selskabsform: ApS</p>
+          </div>
+
+          <p class="note-small" style="margin-top:12px;">
+            Jeg svarer som udgangspunkt inden for 1–2 hverdage.
+          </p>
+        </div>
+
+        <div class="contact-box">
+          <form class="contact-form">
+            <div class="field-group">
+              <label for="navn">Navn</label>
+              <input id="navn" name="navn" type="text" placeholder="Dit navn">
+            </div>
+            <div class="field-group">
+              <label for="mail">E-mail</label>
+              <input id="mail" name="mail" type="email" placeholder="din@virksomhed.dk">
+            </div>
+            <div class="field-group">
+              <label for="virksomhed">Virksomhed</label>
+              <input id="virksomhed" name="virksomhed" type="text" placeholder="Navn på virksomhed">
+            </div>
+            <div class="field-group">
+              <label for="besked">Kort om din henvendelse</label>
+              <textarea id="besked" name="besked" placeholder="Skriv kort hvad du gerne vil tale om..."></textarea>
+            </div>
+            <button type="submit" class="btn-primary">
+              Send forespørgsel (kræver opsætning af formular)
+            </button>
+            <p class="note-small">
+              Denne formular er kun visuel i denne kode. Din webudbyder (fx Webly eller et
+              simpelt form-værktøj) skal kobles på for at modtage henvendelser.
+            </p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    © <span id="year"></span> Baun.dk ApS · Skovgade 6, 5500 Middelfart · Danmark
+  </footer>
+
+  <script>
+    // Sætter automatisk årstal i footer
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
